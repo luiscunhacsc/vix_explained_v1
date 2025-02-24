@@ -1,169 +1,90 @@
-# Capital Asset Pricing Model (CAPM) Explained
+# VIX Explained v1
+
+This repository contains an interactive pedagogical tool designed to help users understand the VIX index and its relationship with option pricing. Built with Streamlit, the app provides a hands-on experience to explore how implied volatility (captured by the VIX) influences option prices using a simplified Black–Scholes model.
 
 ## Overview
 
-The **Capital Asset Pricing Model (CAPM)** is a foundational financial model that estimates the expected return of an asset based on its systematic risk (β). This interactive application empowers users to explore the intricate relationship between risk and return by allowing them to adjust key parameters, visualize outcomes, and dive into both the theory and practical applications behind CAPM.
+The **VIX Explained v1** tool is structured into several tabs, each focusing on a different aspect of the VIX index:
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Cloning the Repository](#cloning-the-repository)
-  - [Creating a Virtual Environment](#creating-a-virtual-environment)
-  - [Installing Dependencies](#installing-dependencies)
-- [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
-- [Editing the Code](#editing-the-code)
-- [Additional Resources](#additional-resources)
-- [Support](#support)
-- [License](#license)
-
-## Overview
-
-The CAPM is a core component of modern portfolio theory. It allows investors to understand and quantify the trade-off between risk and return by using beta (β) as a measure of an asset's sensitivity to market movements. This project includes:
-
-- An interactive dashboard to input parameters such as the risk-free rate, market return, and beta.
-- Dynamic visualizations that demonstrate how these parameters influence expected returns.
-- Educational content that explains the underlying theory, assumptions, and real-world applications of CAPM.
+- **Interactive Tool:** Experiment with key parameters such as implied volatility, time to expiration, underlying price, and risk-free rate to see how they affect the VIX value and option pricing.
+- **Theory Behind VIX:** Learn about the theoretical foundations of the VIX index, including its role as a "fear gauge" and its derivation from option prices.
+- **Comprehensive Tutorial:** A step-by-step guide that explains the dynamics of implied volatility and option pricing.
+- **Practical Labs:** Predefined scenarios (baseline, high volatility, and low volatility) to simulate various market conditions.
+- **The Very Basics of VIX:** A simple explanation of the VIX index and its importance in understanding market sentiment.
 
 ## Features
 
-- **Interactive Dashboard:** Real-time visualization of the Security Market Line (SML) and expected returns.
-- **Customizable Inputs:** Adjust key financial parameters and see instant feedback.
-- **Educational Modules:** Detailed explanations of CAPM, including its assumptions and limitations.
-- **Hands-On Labs:** Practical examples and case studies to solidify your understanding.
-- **User-Friendly Interface:** Designed for both beginners and seasoned finance professionals.
+- **Interactive Visualization:** Use sliders to adjust parameters and observe real-time changes in option prices and the VIX index.
+- **Black–Scholes Integration:** The app includes a simplified Black–Scholes call option pricing function to demonstrate the impact of volatility on option pricing.
+- **Educational Value:** Ideal for classroom demonstrations and self-study to demystify key quantitative finance concepts.
 
 ## Installation
 
 ### Prerequisites
 
-Before setting up the project locally, ensure you have:
+- Python 3.7 or higher
 
-1. **A Computer:** Windows, macOS, or Linux.
-2. **Python 3.9 or Higher:** (Python 3.12 is preferred).  
-   Download from: [python.org/downloads](https://www.python.org/downloads/)
-3. **Visual Studio Code (VS Code):** For code editing.  
-   Download from: [code.visualstudio.com](https://code.visualstudio.com/)
-4. **Git:** (Optional, but recommended for cloning the repository).  
-   Download from: [git-scm.com/downloads](https://git-scm.com/downloads)
+### Required Libraries
 
-### Cloning the Repository
+- [Streamlit](https://streamlit.io/)
+- NumPy
+- Matplotlib
+- SciPy
 
-#### Option 1: Cloning via Git (Recommended)
+Install the required packages using pip:
 
-1. Open Terminal (macOS/Linux) or Command Prompt/PowerShell (Windows).
-2. Navigate to your desired directory:
-   ```
-   cd Documents
-   ```
-3. Clone the repository:
-   ```
-   git clone https://github.com/luiscunhacsc/capm_explained_v1.git
-   ```
-4. Enter the project folder:
-   ```
-   cd capm_explained_v1
-   ```
+```bash
+pip install streamlit numpy matplotlib scipy
+```
 
-#### Option 2: Download as ZIP
+## Running the App
 
-1. Visit [https://github.com/luiscunhacsc/capm_explained_v1](https://github.com/luiscunhacsc/capm_explained_v1).
-2. Click on **Code > Download ZIP**.
-3. Extract the ZIP file to your preferred location.
+To launch the interactive tool, navigate to the repository directory and run:
 
-### Creating a Virtual Environment
+```bash
+streamlit run app.py
+```
 
-Using a virtual environment helps manage dependencies efficiently.
+This command will start the Streamlit server and open the app in your default web browser.
 
-1. Open VS Code and navigate to the project folder.
-2. Open the integrated terminal (use **Ctrl + `** or select *Terminal > New Terminal*).
-3. Create a virtual environment by running:
-   ```
-   python -m venv venv
-   ```
-4. Activate the virtual environment:
-   - **On Windows:**
-     ```
-     venv\Scripts\activate
-     ```
-   - **On macOS/Linux:**
-     ```
-     source venv/bin/activate
-     ```
+## Repository Structure
 
-### Installing Dependencies
+- **app.py:** The main Python file containing the Streamlit application code.
+- **README.md:** This file.
+- Additional configuration or asset files (if any) related to the project.
 
-With the virtual environment activated, install the required packages:
-1. Upgrade pip:
-   ```
-   python.exe -m pip install --upgrade pip
-   ```
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-This command installs libraries such as:
-- **Streamlit** – For the interactive UI.
-- **NumPy** – For mathematical computations.
-- **Matplotlib** – For plotting visualizations.
+## Legal Disclaimer
 
-## Usage
+The VIX Explained v1 software ("Software") is provided **for educational and informational purposes only** and is not intended to provide financial, investment, legal, or tax advice. By using this Software, you agree to the following terms:
 
-To launch the interactive CAPM application:
+### No Investment Advice
 
-1. Ensure your virtual environment is active.
-2. Run the following command in the terminal:
-   ```
-   streamlit run capm_explained.py
-   ```
-3. A new browser tab should open automatically at [http://localhost:8501](http://localhost:8501). If not, open your browser and navigate to that URL manually.
+- The Software is designed solely to illustrate quantitative finance concepts and the functioning of the VIX index through simplified models.
+- The developers, including Luís Simões da Cunha, are not financial advisors and do not offer personalized financial recommendations. Use of the Software does not create an advisory relationship.
 
-## Troubleshooting
+### No Warranty
 
-- **ModuleNotFoundError:**  
-  Verify that the virtual environment is activated using `venv\Scripts\activate` (Windows) or `source venv/bin/activate` (macOS/Linux).
+- THE SOFTWARE IS PROVIDED "AS IS," WITHOUT ANY WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+- The authors and contributors make no representations or warranties regarding the accuracy, completeness, or reliability of the Software or its output.
 
-- **Python Not Recognized:**  
-  Ensure that Python is correctly installed and added to your system's PATH.
+### Limitation of Liability
 
-- **Browser Does Not Open Automatically:**  
-  Manually navigate to [http://localhost:8501](http://localhost:8501) in your web browser.
+- IN NO EVENT SHALL THE AUTHORS, CONTRIBUTORS, OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, OR DAMAGES FOR LOSS OF PROFITS, REVENUE, DATA, OR USE, ARISING OUT OF OR IN CONNECTION WITH YOUR ACCESS TO OR USE OF THE SOFTWARE.
+- Users assume full responsibility for any decisions made based on the Software.
 
-## Editing the Code
+### Indemnification
 
-To customize or improve the application:
+- By using this Software, you agree to indemnify, defend, and hold harmless the authors, contributors, and copyright holders from any claims, liabilities, damages, losses, or expenses (including reasonable attorneys' fees) arising out of or in any way connected with your use of the Software.
 
-1. Open `capm_explained.py` in VS Code.
-2. Modify the code as desired.
-3. After saving changes, restart the Streamlit app:
-   - Stop the current session (using **Ctrl + C** in the terminal).
-   - Relaunch with:
-     ```
-     streamlit run capm_explained.py
-     ```
+### Educational Purposes
 
-## Additional Resources
+- The Software is intended for **educational use only**. It is not a substitute for professional financial advice, investment strategies, or any professional services. Always consult with a licensed professional before making any financial decisions.
 
-- **Streamlit Documentation:**  
-  [docs.streamlit.io](https://docs.streamlit.io)
+## License
 
-- **CAPM Overview:**  
-  [Investopedia CAPM Guide](https://www.investopedia.com/terms/c/capm.asp)
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
 
-- **Modern Portfolio Theory:**  
-  [Investopedia Modern Portfolio Theory](https://www.investopedia.com/terms/m/modernportfoliotheory.asp)
+## Author
 
-## Support
+**Luís Simões da Cunha**
 
-For issues, suggestions, or contributions, please open an issue on GitHub:  
-[https://github.com/luiscunhacsc/capm_explained_v1/issues](https://github.com/luiscunhacsc/capm_explained_v1/issues)
-
-## License & Legal Disclaimer
-
-This project is licensed under the [CC BY-NC 4.0 License](https://creativecommons.org/licenses/by-nc/4.0/deed.en).
-
-**By Luís Simões da Cunha**
-
-This software is provided for educational purposes only. All information and results generated by this tool are intended solely for educational use and should not be interpreted as financial, investment, or professional advice. The author makes no representations or warranties of any kind, express or implied, regarding the accuracy, reliability, or completeness of the information provided. Use of this software is entirely at your own risk, and the author shall not be held liable for any errors, inaccuracies, or damages arising from its use.
