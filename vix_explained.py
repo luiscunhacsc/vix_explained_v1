@@ -106,7 +106,7 @@ with st.sidebar:
 #############################################
 # 6) Main Calculation and Tabs
 #############################################
-# Compute the VIX index value (in our simplified model, equal to the input volatility * 100)
+# Compute the VIX index value (in our simplified model, equal to the input volatility)
 vix_value = compute_vix(vol)
 
 # Create tabs for different sections
@@ -153,19 +153,126 @@ with tab1:
 #############################################
 # Tab 2: Theory Behind VIX
 #############################################
+#############################################
+# Tab 2: Theory Behind VIX
+#############################################
 with tab2:
     st.markdown("""
     ## VIX: Theoretical Foundations
 
-    The **VIX Index** reflects the market's expectation of future volatility over the next 30 days and is derived from S&P 500 index options.
+    The **VIX Index** reflects the market's expectation of future volatility over the next 30 days 
+    and is derived from S&P 500 index options. It is often known as the **"fear gauge"** because 
+    higher values indicate that market participants expect greater volatility or risk.
 
     **Key Concepts:**
-    - **Implied Volatility (σ):** Indicates the market’s forecast of the underlying asset's volatility.
-    - **Option Prices:** The VIX is calculated from a wide range of option prices, capturing a consensus view of future risk.
-    - **Market Sentiment:** Often dubbed the "fear gauge," higher VIX levels suggest greater uncertainty or risk.
 
-    While the actual VIX calculation involves a sophisticated formula that integrates option prices across strikes, this tool simplifies the concept by equating the VIX index with the implied volatility.
+    ### 1. Implied Volatility ($\\sigma$)
+    - **Definition:**  
+      Implied volatility is the market's forecast of the underlying asset's volatility. 
+      It is "implied" by the prices of options traded in the market.
+
+    - **Role in Option Pricing:**  
+      In models like Black–Scholes, implied volatility is a key input. For a call option, 
+      the Black–Scholes formula is:
+
+      $$
+      C = S \\cdot \\Phi(d_1) \\; - \\; K e^{-rT} \\cdot \\Phi(d_2)
+      $$
+
+      where
+
+      $$
+      d_1 = \\frac{\\ln(S/K) + \\bigl(r + \\tfrac{\\sigma^2}{2}\\bigr)T}{\\sigma\\sqrt{T}}, 
+      \\quad
+      d_2 = d_1 - \\sigma\\sqrt{T}.
+      $$
+
+      - $S$: Underlying price  
+      - $K$: Strike price  
+      - $T$: Time to expiration (in years)  
+      - $r$: Risk-free rate  
+      - $\\Phi$: CDF of the standard normal distribution  
+
+    ### 2. Option Prices
+    - **Derivation:**  
+      The VIX is calculated from a broad range of option prices. Since option prices embed 
+      the market's view on future volatility, they provide a consensus view on risk.
+
+    - **Consensus View:**  
+      Aggregating many option prices helps form an overall picture of expected market movements.
+
+    ### 3. Market Sentiment
+    - **The "Fear Gauge":**  
+      A high VIX value typically means that investors expect significant price fluctuations, 
+      signaling high uncertainty or risk.
+
+    - **Interpretation:**  
+      Conversely, a low VIX value indicates a more stable market outlook with lower 
+      anticipated volatility.
+
+    ### Simplified VIX Calculation in This Tool
+    While the actual VIX calculation uses a sophisticated formula integrating option prices 
+    across many strike prices, this educational tool simplifies the concept by assuming:
+
+    $$
+    \\text{VIX} \\approx \\sigma \\times 100
+    $$
+
+    For example, if the implied volatility ($\\sigma$) is 20% (or 0.20 in decimal), 
+    then the VIX value is approximately 20.
+
+    ---
+
+    ### Complete VIX Calculation Methodology
+
+    The actual VIX is calculated using a model-free approach to estimate the expected 
+    30-day variance of the S&P 500 index. Below is a simplified explanation of the methodology:
+
+    1. **Forward Index Level ($F$)**  
+       The forward index level is derived from the prices of call and put options 
+       (via put-call parity). It represents the market's expectation of the index 
+       level at option expiration.
+
+    2. **Variance Calculation ($\\sigma^2$)**  
+       The expected variance is computed as:
+
+       $$
+       \\sigma^2 
+       = \\frac{2 e^{rT}}{T} 
+         \\sum_{i} 
+         \\frac{\\Delta K_i}{K_i^2} \\, Q(K_i)
+       \\; - \\; \\frac{1}{T} \\biggl(\\frac{F}{K_0} - 1\\biggr)^2
+       $$
+
+       **Explanation of terms:**
+       - $\\Delta K_i$: The interval between strike prices.  
+       - $K_i$: Each strike price.  
+       - $Q(K_i)$: The midpoint of the option (call/put) at strike $K_i$.  
+       - $F$: The forward index level.  
+       - $K_0$: The first strike below the forward index level.  
+       - $T$: Time to expiration (in years).  
+       - $r$: The risk-free interest rate.
+
+       This formula sums up contributions from a range of option prices to approximate 
+       the market's expected variance over the period.
+
+    3. **Annualizing the VIX**  
+       Finally, the VIX is expressed as an annualized standard deviation:
+
+       $$
+       \\text{VIX} = 100 \\times \\sqrt{\\sigma^2}.
+       $$
+
+       This converts the variance into a percentage measure of volatility on an 
+       annual basis.
+
+    **Takeaway:**
+    - The VIX provides an annualized percentage measure of expected market volatility.
+    - It is derived from the consensus of option prices, which reflect market expectations.
+    - This comprehensive calculation, although more complex, helps market participants 
+      gauge overall market risk.
     """)
+
 
 #############################################
 # Tab 3: Comprehensive VIX Tutorial
